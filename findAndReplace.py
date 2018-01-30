@@ -5,22 +5,30 @@ But the log file processing tool does not recognize 'key' strings but wants 'cod
 Solution: Write a python based tool, were a user can define list of strings that they want
 replaced over mutiple files in one directory """
 
-#import tkinter as tk
 import os
-import fileinput
-from tkinter import Tk, Label, Button
+import csv
 
-class userInterface:
-    def __init__(self, master):
-        self.master = master
-        master.title("Find and Replace")
+# Openning the directory and reading all the file names
+myDir = input("Input the path of directory where and Find and Replace operation is desired : ")
+allFiles = os.listdir(myDir)
 
-        self.label = Label(master, text="Once stop shop for 'Find and Replace'")
-        self.label.pack()
+# reading find and replace csv file into a list
+with open('findAndReplace.csv', 'r') as f:
+    reader = csv.reader(f)
+    ourList = list(reader)
 
-        self.close_button = Button(master, text="Close", command=master.quit)
-        self.close_button.pack()
+#openning one file at a time
+for currentFile in allFiles:
+    currentFile=myDir+'/'+currentFile
+    with open(currentFile, 'r') as file :
+        filedata = file.read()
+        print('Opening file %s' % currentFile)
+        #finding and replacing all the strings in the file
+        for list in ourList:
+            print('Finding %s and replacing it with %s' % (list[0], list[1]))
+            filedata = filedata.replace(list[0], list[1])
+            # Write the file out again
+            with open(currentFile, 'w') as file:
+                file.write(filedata)
 
-root = Tk()
-my_gui = userInterface(root)
-root.mainloop()
+a = input(" Hit Enter to finsh this program")
