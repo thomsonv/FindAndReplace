@@ -31,4 +31,4 @@ for currentFile in allFiles:
             with open(currentFile, 'w') as file:
                 file.write(filedata)
 
-a = input(" Hit Enter to finsh this program")
+a = input(" Hit Enter to end this program")
