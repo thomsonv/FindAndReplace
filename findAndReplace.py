@@ -1,6 +1,6 @@
 """ 1/25/2018:
 Problem: Have loads of log files with multiple 'keys'.
-But the log file processing tool does not recognize 'key' strings but wants 'code' strings!
+The log file processing tool does not recognize 'key' strings but wants 'code' strings!
 
 Solution: Write a python based tool, were a user can define list of strings that they want
 replaced over mutiple files in one directory """
@@ -8,7 +8,7 @@ replaced over mutiple files in one directory """
 import os
 import csv
 
-# Openning the directory and reading all the file names
+# Opening the directory and reading all the file names
 myDir = input("Input the path of directory where and Find and Replace operation is desired : ")
 allFiles = os.listdir(myDir)
 
@@ -31,4 +31,4 @@ for currentFile in allFiles:
             with open(currentFile, 'w') as file:
                 file.write(filedata)
 
-a = input(" Hit Enter to end this program")
+a = input(" Hit ENTER to end this program")
